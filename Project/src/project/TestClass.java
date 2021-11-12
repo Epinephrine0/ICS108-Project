@@ -5,7 +5,7 @@ package project;
 public class TestClass {
 	 
 	public static void main(String[] args) {
-		System.out.println("test");
+		System.out.println("TEST NUMBER 2");
 		CommonClass.loadBinaryData();
 		
 	}
