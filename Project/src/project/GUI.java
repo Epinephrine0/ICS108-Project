@@ -13,35 +13,28 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class GUI extends Application {
-
+	
+	public static Scene myScene;
+	public static Stage StaticprimaryStage;
+	
 	@Override
 	public void start(Stage primaryStage) {
-		// The starting screen
-		Pane startScreen = new Pane();
-		Label registrationLabel = new Label("Registration System");
-
-		registrationLabel.setFont(Font.font("arial", 40));
-		registrationLabel.setLayoutX(240);
-		registrationLabel.setLayoutY(200);
-
-		HBox hbox = new HBox(10);
-		Button viewCourse = new Button("View Course");
-		Button viewStudentDetails = new Button("View Student Details");
-		Button save = new Button("Save");
-		hbox.getChildren().addAll(viewCourse, viewStudentDetails, save);
-		hbox.setLayoutX(280);
-		hbox.setLayoutY(550);
-
-		startScreen.getChildren().add(registrationLabel);
-		startScreen.getChildren().add(hbox);
-
-		Scene Startscene = new Scene(startScreen, 850, 600);
+		// The starting screen	
+		this.StaticprimaryStage = primaryStage;
+		primaryStage.setHeight(640);
+		primaryStage.setWidth(850);
+		
+		myScene = new Scene(new MainPane());
+		
+		
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("Project");
-		primaryStage.setScene(Startscene);
+		primaryStage.setScene(myScene);
 		primaryStage.show();
 
-		// The courses screen
+		
+		
+/*		// The courses screen
 		Pane coursesPane = new Pane();
 		Scene coursesScene = new Scene(coursesPane, 1200, 500);
 
@@ -105,7 +98,7 @@ public class GUI extends Application {
 			primaryStage.setScene(Startscene);
 			primaryStage.show();
 		});
-
+*/
 	}
 
 	public static void main(String[] args) {
