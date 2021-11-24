@@ -12,6 +12,7 @@ public class MainPane extends Pane {
 	private Button viewCourse;
 	private Button viewStudentDetails;
 	private Button save;
+	private Button exit;
 	
 	public MainPane() {
 		this.registrationLabel = new Label("Registration System");
@@ -24,13 +25,18 @@ public class MainPane extends Pane {
 		this.viewCourse = new Button("View Course");
 		this.viewStudentDetails = new Button("View Student Details");
 		this.save = new Button("Save");
+		this.exit = new Button("Exit");
 		
-		this.hbox.getChildren().addAll(viewCourse, viewStudentDetails, save);
-		this.hbox.setLayoutX(280);
+		this.hbox.getChildren().addAll(viewCourse, viewStudentDetails, save, exit);
+		this.hbox.setLayoutX(250);
 		this.hbox.setLayoutY(550);
 		
 		this.getChildren().add(registrationLabel);
 		this.getChildren().add(hbox);
+		
+		this.exit.setOnAction(e->{
+			System.exit(0);
+		});
 		
 		this.viewCourse.setOnAction(e->{
 			GUI.myScene.setRoot(new CoursesPane());
