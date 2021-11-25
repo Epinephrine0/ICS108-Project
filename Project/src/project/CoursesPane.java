@@ -90,8 +90,7 @@ public class CoursesPane extends Pane {
 		this.time_TextField = new TextField();
 		this.time_TextField.setMinWidth(400);
 
-		ObservableList<String> options = FXCollections.observableArrayList("Open", "Closed");
-		this.statusComboBox = new ComboBox(options);
+		this.statusComboBox = new ComboBox();
 		this.statusComboBox.setDisable(true);
 		
 		this.search_Label = new Label("Please enter the course ID:");
@@ -217,9 +216,9 @@ public class CoursesPane extends Pane {
 
 			if (CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex())
 					.getAvailableSeats() > 0) {
-				this.statusComboBox.getSelectionModel().select(0);
+				this.statusComboBox.setValue("Open");
 			} else {
-				this.statusComboBox.getSelectionModel().select(1);
+				this.statusComboBox.setValue("Closed");
 
 			}
 
