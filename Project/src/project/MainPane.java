@@ -15,6 +15,11 @@ public class MainPane extends Pane {
 	private Button exit;
 	
 	public MainPane() {
+		
+		
+		GUI.StaticprimaryStage.setHeight(640);
+		GUI.StaticprimaryStage.setWidth(850);
+		
 		this.registrationLabel = new Label("Registration System");
 		this.registrationLabel.setFont(Font.font("arial", 40));
 		this.registrationLabel.setLayoutX(240);
@@ -40,9 +45,7 @@ public class MainPane extends Pane {
 		
 		this.viewCourse.setOnAction(e->{
 			GUI.myScene.setRoot(new CoursesPane());
-			GUI.StaticprimaryStage.setTitle("Courses");
-			GUI.StaticprimaryStage.setHeight(600);
-			GUI.StaticprimaryStage.setWidth(1200);
+			
 		});
 		
 		

@@ -2,6 +2,7 @@ package project;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 
 public class CoursesPane extends Pane {
 	private HBox hbox;
@@ -28,18 +30,21 @@ public class CoursesPane extends Pane {
 	private Label location;
 	private Label time;
 	private Label status;
-	private Label search_Label;
 	private Label search_Failed_Message;
 	private TextField id_TextField;
 	private TextField name_TextField;
 	private TextField days_TextField;
 	private TextField location_TextField;
 	private TextField time_TextField;
-	private TextField search_Input;
 	private ComboBox statusComboBox;
 	private boolean is_Not_Found;
 
 	public CoursesPane() {
+
+		GUI.StaticprimaryStage.setTitle("Courses");
+		GUI.StaticprimaryStage.setHeight(600);
+		GUI.StaticprimaryStage.setWidth(1200);
+
 		this.hbox = new HBox(10);
 		this.back = new Button("Back");
 		this.previous = new Button("< Previous");
@@ -92,15 +97,6 @@ public class CoursesPane extends Pane {
 
 		this.statusComboBox = new ComboBox();
 		this.statusComboBox.setDisable(true);
-		
-		this.search_Label = new Label("Please enter the course ID:");
-		this.search_Input = new TextField();
-
-		this.search_Label.setLayoutX(350);
-		this.search_Label.setLayoutY(355);
-		this.search_Input.setLayoutX(420);
-		this.search_Input.setLayoutY(382);
-		this.search_Input.setMinWidth(400);
 
 		this.vbox2.getChildren().addAll(id_TextField, name_TextField, days_TextField, location_TextField,
 				time_TextField, statusComboBox);
@@ -110,7 +106,7 @@ public class CoursesPane extends Pane {
 
 		this.search_Failed_Message = new Label("Error, this course ID does not exist!");
 		this.search_Failed_Message.setLayoutX(465);
-		this.search_Failed_Message.setLayoutY(450);
+		this.search_Failed_Message.setLayoutY(400);
 		this.search_Failed_Message.setStyle("-fx-font-weight: bold");
 		this.getChildren().addAll(coursesList, studentsList, studentsRegisteredLabel, hbox, vbox1, vbox2,
 				search_Failed_Message);
@@ -123,6 +119,7 @@ public class CoursesPane extends Pane {
 			GUI.StaticprimaryStage.setTitle("Project");
 			GUI.StaticprimaryStage.setHeight(640);
 			GUI.StaticprimaryStage.setWidth(850);
+
 		});
 
 		this.coursesList.setOnMouseClicked(e -> {
@@ -166,20 +163,18 @@ public class CoursesPane extends Pane {
 
 		this.search.setOnAction(e -> {
 
-			if (search_Input.getText().equals("")) {
-				if (search_Label.getScene() == null && search_Input.getScene() == null) {
-					this.getChildren().addAll(search_Label, search_Input);
-				}
-			}
+			if (!id_TextField.getText().equals("")) {
 
-			else {
 				searchForCourse();
+
 			}
 
 		});
 
-		this.search_Input.setOnAction(e -> {
+		this.id_TextField.setOnAction(e -> {
+
 			searchForCourse();
+
 		});
 
 	}
@@ -229,7 +224,7 @@ public class CoursesPane extends Pane {
 		is_Not_Found = true;
 
 		for (int i = 0; i < CommonClass.courseList.size(); i++) {
-			if (CommonClass.courseList.get(i).getCourseID().equals(this.search_Input.getText().toUpperCase())) {
+			if (CommonClass.courseList.get(i).getCourseID().equals(this.id_TextField.getText().toUpperCase())) {
 				this.coursesList.getSelectionModel().select(i);
 				this.coursesList.scrollTo(i);
 				courseInformationMethod();
