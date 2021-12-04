@@ -45,6 +45,5 @@ public class GUI extends Application {
 		CommonClass.loadBinaryData();         //Needed to load all the data
 		Application.launch(args);
 		
-		System.out.print(CommonClass.courseList.get(19).getCourseSeats());
 	}
 }
