@@ -7,6 +7,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
 public class MainPane extends Pane {
+	
+	//All the parameters needed for the class 
 	private Label registrationLabel;
 	private HBox hbox;
 	private Button viewCourse;
@@ -16,14 +18,17 @@ public class MainPane extends Pane {
 	
 	public MainPane() {
 		
-		
+		//Setting the dimensions
 		GUI.StaticprimaryStage.setHeight(640);
 		GUI.StaticprimaryStage.setWidth(850);
 		
+		//Setting the Registration label
 		this.registrationLabel = new Label("Registration System");
 		this.registrationLabel.setFont(Font.font("arial", 40));
 		this.registrationLabel.setLayoutX(240);
 		this.registrationLabel.setLayoutY(200);
+		
+		//Setting the HBox and putting the buttons in it
 		
 		this.hbox = new HBox (10);
 		
@@ -39,12 +44,19 @@ public class MainPane extends Pane {
 		this.getChildren().add(registrationLabel);
 		this.getChildren().add(hbox);
 		
+		
+		
+		//Making the "Exit" button function
+		
 		this.exit.setOnAction(e->{
 			System.exit(0);
 		});
 		
+		
+		//Making the "View Course" button function
 		this.viewCourse.setOnAction(e->{
-			GUI.myScene.setRoot(new CoursesPane());
+			GUI.myScene.setRoot(new CoursesPane());  
+			
 			
 		});
 		

@@ -16,17 +16,23 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class GUI extends Application {
+	
+	//All the parameters needed for the class 
 
 	public static Scene myScene;
 	public static Stage StaticprimaryStage;
 
 	@Override
 	public void start(Stage primaryStage) {
-		// The starting screen
-		this.StaticprimaryStage = primaryStage;
+		
+		this.StaticprimaryStage = primaryStage;         //To have access to the stage everywhere
 	
 
-		myScene = new Scene(new MainPane());
+		
+		
+		//Initializing the starting screen (the Main Pane)
+		
+		myScene = new Scene(new MainPane());          
 		primaryStage.getIcons().add(new Image("file:icon.png"));
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("Project");
@@ -36,7 +42,7 @@ public class GUI extends Application {
 	}
 
 	public static void main(String[] args) {
-		CommonClass.loadBinaryData();
+		CommonClass.loadBinaryData();         //Needed to load all the data
 		Application.launch(args);
 	}
 }
