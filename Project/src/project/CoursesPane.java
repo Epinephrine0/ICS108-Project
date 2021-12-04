@@ -15,9 +15,8 @@ import javafx.stage.Screen;
 
 public class CoursesPane extends Pane {
 
-	//All the parameters needed for the class 
+	// All the parameters needed for the class
 
-	
 	private HBox hbox;
 	private Button back;
 	private Button previous;
@@ -42,16 +41,17 @@ public class CoursesPane extends Pane {
 	private TextField time_TextField;
 	private ComboBox statusComboBox;
 	private boolean is_Not_Found;
+	private int count;
 
 	public CoursesPane() {
 
-		//Setting the title and dimensions
+		// Setting the title and dimensions
 
 		GUI.StaticprimaryStage.setTitle("Courses");
 		GUI.StaticprimaryStage.setHeight(600);
 		GUI.StaticprimaryStage.setWidth(1200);
 
-		//Setting the HBox and putting the buttons in it
+		// Setting the HBox and putting the buttons in it
 
 		this.hbox = new HBox(10);
 		this.back = new Button("Back");
@@ -62,32 +62,32 @@ public class CoursesPane extends Pane {
 		this.hbox.getChildren().addAll(back, previous, next, search);
 		this.hbox.setLayoutX(440);
 		this.hbox.setLayoutY(520);
-		
-		//Setting the courses and students list view
+
+		// Setting the courses and students list view
 
 		this.coursesList = new ListView();
 		this.studentsList = new ListView();
 
 		for (int i = 0; i < CommonClass.courseList.size(); i++) {
-			coursesList.getItems().add(CommonClass.courseList.get(i).getCourseID());       //This loop will add every course in the courses list view
+			coursesList.getItems().add(CommonClass.courseList.get(i).getCourseID()); // This loop will add every course
+																						// in the courses list view
 		}
-		
-		//Courses and Students list view position
+
+		// Courses and Students list view position
 
 		this.coursesList.setLayoutX(15);
 		this.coursesList.setLayoutY(15);
 		this.studentsList.setLayoutX(900);
 		this.studentsList.setLayoutY(40);
-		
-		
-		//This label will appear above the students list view to tell how many students are registered in the selected course
+
+		// This label will appear above the students list view to tell how many students
+		// are registered in the selected course
 
 		this.studentsRegisteredLabel = new Label("");
 		this.studentsRegisteredLabel.setLayoutX(900);
 		this.studentsRegisteredLabel.setLayoutY(15);
-		
-		
-		//Setting the left VBox and putting all the labels in it
+
+		// Setting the left VBox and putting all the labels in it
 
 		this.vbox1 = new VBox(20);
 		this.id = new Label("ID");
@@ -100,9 +100,8 @@ public class CoursesPane extends Pane {
 		this.vbox1.getChildren().addAll(id, name, days, location, time, status);
 		this.vbox1.setLayoutX(350);
 		this.vbox1.setLayoutY(100);
-		
-		
-		//Setting the right VBox and putting all the Text Fields in it
+
+		// Setting the right VBox and putting all the Text Fields in it
 
 		this.vbox2 = new VBox(12);
 		this.id_TextField = new TextField();
@@ -124,8 +123,9 @@ public class CoursesPane extends Pane {
 
 		this.vbox2.setLayoutX(420);
 		this.vbox2.setLayoutY(98);
-		
-		//This label will not be visible by default, and will show when the search function fails to find the course
+
+		// This label will not be visible by default, and will show when the search
+		// function fails to find the course
 
 		this.search_Failed_Message = new Label("Error, this course ID does not exist!");
 		this.search_Failed_Message.setLayoutX(465);
@@ -135,9 +135,8 @@ public class CoursesPane extends Pane {
 				search_Failed_Message);
 
 		this.search_Failed_Message.setVisible(false);
-		
-		
-		//Making the "Back" button function
+
+		// Making the "Back" button function
 
 		this.back.setOnAction(e -> {
 
@@ -147,18 +146,19 @@ public class CoursesPane extends Pane {
 			GUI.StaticprimaryStage.setWidth(850);
 
 		});
-		
-		//When the user click on any course this action will call the Course Information Method
-		
+
+		// When the user click on any course this action will call the Course
+		// Information Method
+
 		this.coursesList.setOnMouseClicked(e -> {
 			courseInformationMethod();
 
 		});
-		
-		//When the user click on "Next" we just select the (selected index + 1), if the selected is the last index, we select index 0
-		//and we call the Course Information Method
 
-		
+		// When the user click on "Next" we just select the (selected index + 1), if the
+		// selected is the last index, we select index 0
+		// and we call the Course Information Method
+
 		this.next.setOnAction(e -> {
 			if (this.coursesList.getSelectionModel().getSelectedIndex() == CommonClass.courseList.size() - 1) {
 				this.coursesList.getSelectionModel().selectFirst();
@@ -176,12 +176,14 @@ public class CoursesPane extends Pane {
 			this.courseInformationMethod();
 
 		});
-		
-		//When the user click on "Previous" we just select the (selected index - 1), if the selected is the first index, we select the last index
-		//and we call the Course Information Method
-		
-		//Note that the -1 in the condition is to handle the case where the user does not select anything and just press "Previous", in this case
-		//we select the last index
+
+		// When the user click on "Previous" we just select the (selected index - 1), if
+		// the selected is the first index, we select the last index
+		// and we call the Course Information Method
+
+		// Note that the -1 in the condition is to handle the case where the user does
+		// not select anything and just press "Previous", in this case
+		// we select the last index
 
 		this.previous.setOnAction(e -> {
 			if (this.coursesList.getSelectionModel().getSelectedIndex() == 0
@@ -199,11 +201,9 @@ public class CoursesPane extends Pane {
 			this.courseInformationMethod();
 
 		});
-		
-		
-		
-		//When the user click on "Search" this action will call the Search function
-		
+
+		// When the user click on "Search" this action will call the Search function
+
 		this.search.setOnAction(e -> {
 
 			if (!id_TextField.getText().equals("")) {
@@ -213,9 +213,9 @@ public class CoursesPane extends Pane {
 			}
 
 		});
-		
-		
-		//When the user does not click on "Search", but presses "Enter", this action will call the search funtion
+
+		// When the user does not click on "Search", but presses "Enter", this action
+		// will call the search funtion
 
 		this.id_TextField.setOnAction(e -> {
 
@@ -224,60 +224,63 @@ public class CoursesPane extends Pane {
 		});
 
 	}
-	
-	//This method will get the selected course information
-	
+
+	// This method will get the selected course information
+
 	private void courseInformationMethod() {
-		if (this.coursesList.getSelectionModel().getSelectedIndex() != -1) {
-			studentsRegisteredLabel.setText("There are "
-					+ CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseSeats() //Getting how many students are
-					                                                                                                  //registered in the course
-					+ " students registered in " + coursesList.getSelectionModel().getSelectedItem());
+		count = 0; // Number of students registered in the course
 
-			studentsList.getItems().clear();                                                                 //Clear the list from the previous students
+		studentsList.getItems().clear(); // Clear the list from the previous students
+		
+		
+		// This loop will check search for students
+		// who are registered in the course and will add them to the list
+		// it will also count how many students are registered in the selected course
 
-			for (int i = 0; i < CommonClass.studentList.size(); i++) {                                    //This loop will check search for students
-				                                                                                          //who are registered in the course and will add them to the list
-				for (int j = 0; j < CommonClass.studentList.get(i).getCourses().size(); j++) {
+		for (int i = 0; i < CommonClass.studentList.size(); i++) { 
+			for (int j = 0; j < CommonClass.studentList.get(i).getCourses().size(); j++) {
 
-					if (CommonClass.studentList.get(i).getCourses().get(j).getCourseID()
-							.equals(coursesList.getSelectionModel().getSelectedItem())) {
-						
-						studentsList.getItems().add(CommonClass.studentList.get(i).getStudID());
-					}
+				if (CommonClass.studentList.get(i).getCourses().get(j).getCourseID()
+						.equals(coursesList.getSelectionModel().getSelectedItem())) {
 
+					studentsList.getItems().add(CommonClass.studentList.get(i).getStudID());
+					count++;
 				}
-			}
-			
-			
-			//Filling the course information in the Text Fields
-
-			this.id_TextField.setText(
-					CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseID());
-			this.name_TextField.setText(
-					CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseName());
-			this.days_TextField.setText(
-					CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseDays());
-			this.location_TextField.setText(
-					CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseLocation());
-			this.time_TextField.setText(
-					CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseTime());
-
-			if (CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex())
-					.getAvailableSeats() > 0) {
-				this.statusComboBox.setValue("Open");
-			} else {
-				this.statusComboBox.setValue("Closed");
 
 			}
+		}
+
+		studentsRegisteredLabel.setText("There are " + count + " students registered in "
+				+ CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseID());
+
+		// Filling the course information in the Text Fields
+
+		this.id_TextField
+				.setText(CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseID());
+		this.name_TextField.setText(
+				CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseName());
+		this.days_TextField.setText(
+				CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseDays());
+		this.location_TextField.setText(
+				CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseLocation());
+		this.time_TextField.setText(
+				CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getCourseTime());
+
+		if (CommonClass.courseList.get(coursesList.getSelectionModel().getSelectedIndex()).getAvailableSeats() > 0) {
+			this.statusComboBox.setValue("Open");
+		} else {
+			this.statusComboBox.setValue("Closed");
 
 		}
+
 	}
-	
-	//This method will search for a course in the courseList, taking the input from the user in the course id Text Field
-	//If the course is not found, the Search Failed label will be visible
-	//If the course is found it will select it in the courses list view and will call the Course Information Method
-	
+
+	// This method will search for a course in the courseList, taking the input from
+	// the user in the course id Text Field
+	// If the course is not found, the Search Failed label will be visible
+	// If the course is found it will select it in the courses list view and will
+	// call the Course Information Method
+
 	private void searchForCourse() {
 		is_Not_Found = true;
 
