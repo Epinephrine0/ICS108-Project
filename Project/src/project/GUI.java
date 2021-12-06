@@ -42,7 +42,6 @@ public class GUI extends Application {
 	}
 
 	public static void main(String[] args) {
-		System.out.print("Test");
 		CommonClass.loadBinaryData();         //Needed to load all the data
 		Application.launch(args);
 		
