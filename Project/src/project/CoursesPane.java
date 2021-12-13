@@ -77,14 +77,14 @@ public class CoursesPane extends Pane {
 
 		this.coursesList.setLayoutX(15);
 		this.coursesList.setLayoutY(15);
-		this.studentsList.setLayoutX(900);
+		this.studentsList.setLayoutX(920);
 		this.studentsList.setLayoutY(40);
 
 		// This label will appear above the students list view to tell how many students
 		// are registered in the selected course
 
 		this.studentsRegisteredLabel = new Label("");
-		this.studentsRegisteredLabel.setLayoutX(900);
+		this.studentsRegisteredLabel.setLayoutX(920);
 		this.studentsRegisteredLabel.setLayoutY(15);
 
 		// Setting the left VBox and putting all the labels in it

@@ -10,7 +10,7 @@ public class CommonClass {
 	public static ArrayList<Course> courseList = new ArrayList<>();
     public static ArrayList<Student> studentList = new ArrayList<>();
       
-    private static final  File FILE = new File("res\\Registration.dat"); 
+    private static final  File FILE = new File("res\\Registration.dat");
     
    
     
@@ -29,8 +29,9 @@ public class CommonClass {
 	  for ( int i = 0 ; i<  CommonClass.studentList.size(); i++)
 		  System.out.println(CommonClass.studentList.get(i)); 
 	  
-
+	 
   }   
+  
   
   
   catch (FileNotFoundException  ex) {
@@ -42,6 +43,7 @@ public class CommonClass {
       }
   
   
+
 }
     
     
