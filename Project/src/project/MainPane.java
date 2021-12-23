@@ -63,10 +63,12 @@ public class MainPane extends Pane {
 			if (unsavedChanges) {
 				if (MainPane.unsavedChanges) {
 
+					// Alert popup when there is an unsaved changes
+
 					Alert alert = new Alert(AlertType.WARNING, "Header", ButtonType.YES, ButtonType.NO);
 
 					alert.setHeaderText("You did not click save...");
-					alert.setTitle("Warning, unsaved changes detected");
+					alert.setTitle("Warning unsaved changes detected");
 
 					alert.setContentText("Any unsaved changes will be lost, are you sure you want to exit?");
 					alert.showAndWait();

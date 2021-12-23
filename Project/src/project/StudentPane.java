@@ -15,8 +15,8 @@ public class StudentPane extends Pane {
 	// All the parameters needed for the class
 
 	private Label studentIDLabel;
-	private Label registerdCoursesLabel;
-	private Label notRegisterdCoursesLabel;
+	private Label registeredCoursesLabel;
+	private Label notregisteredCoursesLabel;
 	private Label search_Failed_Message;
 	private TextField studentID_TextField;
 	private ListView coursesList;
@@ -44,8 +44,8 @@ public class StudentPane extends Pane {
 
 		// Setting the labels
 		this.studentIDLabel = new Label("Student ID");
-		this.registerdCoursesLabel = new Label("Registerd Courses");
-		this.notRegisterdCoursesLabel = new Label("Not Registerd Courses");
+		this.registeredCoursesLabel = new Label("Registered Courses");
+		this.notregisteredCoursesLabel = new Label("Not Registered Courses");
 		
 		this.search_Failed_Message = new Label("Search failed, there is no student with this ID");
 		this.search_Failed_Message.setStyle("-fx-font-weight: bold");
@@ -56,11 +56,11 @@ public class StudentPane extends Pane {
 		this.studentIDLabel.setLayoutX(100);
 		this.studentIDLabel.setLayoutY(50);
 
-		this.registerdCoursesLabel.setLayoutX(100);
-		this.registerdCoursesLabel.setLayoutY(250);
+		this.registeredCoursesLabel.setLayoutX(100);
+		this.registeredCoursesLabel.setLayoutY(250);
 
-		this.notRegisterdCoursesLabel.setLayoutX(100);
-		this.notRegisterdCoursesLabel.setLayoutY(447);
+		this.notregisteredCoursesLabel.setLayoutX(100);
+		this.notregisteredCoursesLabel.setLayoutY(447);
 
 		// Setting the HBox and putting the buttons in it
 
@@ -89,7 +89,7 @@ public class StudentPane extends Pane {
 		vbox.setLayoutX(250);
 		vbox.setLayoutY(50);
 
-		this.getChildren().addAll(studentIDLabel, registerdCoursesLabel, notRegisterdCoursesLabel, hbox, vbox,search_Failed_Message);
+		this.getChildren().addAll(studentIDLabel, registeredCoursesLabel, notregisteredCoursesLabel, hbox, vbox,search_Failed_Message);
 
 		// Showing the student ID and Courses
 		indexOfStudent = 0;

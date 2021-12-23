@@ -1,5 +1,7 @@
 package project;
 
+import javax.swing.JOptionPane;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -41,6 +43,8 @@ public class GUI extends Application {
 		primaryStage.setOnCloseRequest(e -> {
 			if (MainPane.unsavedChanges) {
 
+				// Alert popup when there is an unsaved changes
+
 				Alert alert = new Alert(AlertType.WARNING, "Header", ButtonType.YES, ButtonType.NO);
 
 				alert.setHeaderText("You did not click save...");
@@ -64,8 +68,12 @@ public class GUI extends Application {
 	}
 
 	public static void main(String[] args) {
-		CommonClass.loadBinaryData(); // Needed to load all the data
-		Application.launch(args);
-
+		try {
+			CommonClass.loadBinaryData(); // Needed to load all the data
+			Application.launch(args);
+		} catch (Throwable t) {
+			JOptionPane.showMessageDialog(null, t.getClass().getSimpleName() + ": " + t.getMessage());
+			throw t; // don't suppress Throwable
+		}
 	}
 }
